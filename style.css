@@ -1,0 +1,24 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+#PresentTime{
+    display: flex;
+    justify-content: end;
+    padding-right: 15px;
+    right: 30px;
+}
+.Title{
+    margin: auto;
+    text-align: center;
+}
+.Content{
+    padding-top: 100px;
+    text-align: center;
+}
+.Buttons{
+    padding-top: 20px;
+}
+.Button{
+    padding: 5px;
+}
