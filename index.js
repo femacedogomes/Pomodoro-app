@@ -1,39 +1,80 @@
-function Watch(){
-    const data = new Date()
-    let hr = data.getHours()
-    let min = data.getMinutes()
-    let sec = data.getSeconds()
-    hr = hr < 10 ? "0" + hr : hr;
-    min = min < 10 ? "0"+ min : min;
-    sec = sec < 10 ? "0"+ sec : sec;
-    let TotalTime = `${hr}:${min}:${sec}`
-    let tempo = document.getElementById('PresentTime')
-    tempo.innerHTML = TotalTime
-    
+//variables
+
+let workTittle = document.getElementById('Work')
+let breakTittle = document.getElementById('Break')
+
+let worktime = 25;
+let breaktime = 5;
+
+let seconds = '00';
+
+window.onload = () => {
+    document.getElementById('pause').style.display = 'none'
+    document.getElementById('reset').style.display = 'none'
+
+    document.getElementById('minutes').innerHTML = worktime;
+    document.getElementById('seconds').innerHTML = seconds;
+
+    workTittle.classList.add('Active')
 }
-setInterval(Watch, 1000)
-
-function startTimer(duration,display){
-    var timer = duration, minutes, seconds;
-    
-    setInterval(function(){
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
-
-        minutes = minutes < 10 ? '0'+minutes : minutes;
-        seconds = seconds < 10 ? '0'+seconds : seconds;
-
-        display.textContent = `${minutes}:${seconds}`
-
-        if(--timer < 0){
-            timer = duration;
-        }
-    },1000)
-}
+//functions 
 
 function Start() {
-    var duration = 0.5 * 60;
-    var display = document.getElementById('Time');
+    
 
-    startTimer(duration,display)
+    //change button
+    document.getElementById('start').style.display = "none"
+
+    document.getElementById('pause').style.display = ''
+    document.getElementById('reset').style.display = ''
+
+
+    seconds = 59;
+
+    let workMinutes = worktime - 1;
+    let breakMinutes = breaktime - 1;
+
+    breakCount = 0;
+
+    let timerFunction = () => {
+        document.getElementById('minutes').innerHTML = workMinutes
+        document.getElementById('seconds').innerHTML = seconds
+
+        seconds = seconds - 1;
+        if (seconds == -1) {
+            workMinutes = workMinutes - 1;
+            if (workMinutes == -1) {
+                if (breakCount % 2 == 0) {
+                    //start break
+                    workMinutes = breakMinutes;
+                    seconds = 59
+
+                    breakCount++
+
+                    //change painel
+                    workTittle.classList.remove('Active')
+                    breakTittle.classList.add('Active')
+
+                } else {
+                    //start worktime
+                    workMinutes = worktime;
+                    seconds = 59
+
+                    breakCount++
+
+                    //change painel
+                    workTittle.classList.add('Active')
+                    breakTittle.classList.remove('Active')
+                }
+            }
+            seconds = 59
+            
+        }
+
+    }
+    
+    setInterval(timerFunction, 1000);
+   
 }
+
+

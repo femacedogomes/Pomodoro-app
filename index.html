@@ -6,22 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
-    <script src="index.js"></script>
+    
 </head>
 <body>
     <h2 id="PresentTime"></h2>
     <h1 class="Title">Pomodoro App</h1>
     <div class="Content">
-        <h2 id="Time">TEMPO</h2>
+        <div id="painel">
+            <p id="Work">work</p>
+            <p id="Break">break</p>
+        </div>
+        <div id="timer">
+            <p id="minutes">25</p>
+            <p>:</p>
+            <p id="seconds">00</p>
+        </div>
         <div class="Buttons">
-            <button class="Button Start" onclick="Start()">Start</button>
-            <button class="Button Pause">Pause</button>
-            <button class="Button Reset">Reset</button>
+            <button class="Button" id="start" onclick="Start()">Start</button>
+            <button class="Button" id="pause" onclick="Stop()">Pause</button>
+            <button class="Button" id="reset">Reset</button>
         </div>  
     </div>
-        
-    
-    
-
 </body>
+<script src="index.js"></script>
 </html>
