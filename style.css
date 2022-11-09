@@ -2,6 +2,7 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
+    font-family: 'Pacifico', cursive;
 }
 body{
     background-image: linear-gradient(rgba(17, 0, 255, 0.527), rgba(4, 0, 255, 0.664));

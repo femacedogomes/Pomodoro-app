@@ -3,24 +3,23 @@
 let workTittle = document.getElementById('Work')
 let breakTittle = document.getElementById('Break')
 
-let worktime = 25;
-let breaktime = 5;
+var worktime = 25;
+var breaktime = 5;
 
-let seconds = '00';
+let seconds = 59;
 
 window.onload = () => {
     document.getElementById('pause').style.display = 'none'
     document.getElementById('reset').style.display = 'none'
 
     document.getElementById('minutes').innerHTML = worktime;
-    document.getElementById('seconds').innerHTML = seconds;
 
     workTittle.classList.add('Active')
 }
 //functions 
 
 function Start() {
-    
+
 
     //change button
     document.getElementById('start').style.display = "none"
@@ -29,14 +28,14 @@ function Start() {
     document.getElementById('reset').style.display = ''
 
 
-    seconds = 59;
+    
 
     let workMinutes = worktime - 1;
     let breakMinutes = breaktime - 1;
 
     breakCount = 0;
 
-    let timerFunction = () => {
+    var timerFunction = setInterval(() => {
         document.getElementById('minutes').innerHTML = workMinutes
         document.getElementById('seconds').innerHTML = seconds
 
@@ -68,13 +67,35 @@ function Start() {
                 }
             }
             seconds = 59
-            
         }
+    }, 1000);
+
+    document.getElementById('reset').addEventListener('click', resetfunction)
+
+    function resetfunction() {
+        clearInterval(timerFunction)
+
+        document.getElementById('start').style.display = ""
+        document.getElementById('pause').style.display = 'none'
+        document.getElementById('reset').style.display = 'none'
+
+        worktime = 25;
+        breaktime = 5;
+        seconds = 59;
+
+        document.getElementById('minutes').innerHTML = worktime
+        document.getElementById('seconds').innerHTML = '00'
 
     }
-    
-    setInterval(timerFunction, 1000);
-   
+
+    document.getElementById('pause').addEventListener('click', pausefunction)
+
+    function pausefunction(){
+        clearInterval(timerFunction)
+
+        document.getElementById('start').style.display = ""
+        document.getElementById('pause').style.display = 'none'
+        document.getElementById('reset').style.display = ""
+    }
+
 }
-
-
