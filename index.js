@@ -28,7 +28,7 @@ function Start() {
     document.getElementById('reset').style.display = ''
 
 
-    
+
 
     let workMinutes = worktime - 1;
     let breakMinutes = breaktime - 1;
@@ -36,8 +36,13 @@ function Start() {
     breakCount = 0;
 
     var timerFunction = setInterval(() => {
+        let showseconds = seconds
+        if (seconds < 10) {
+            showseconds = '0' + seconds
+        }
+
         document.getElementById('minutes').innerHTML = workMinutes
-        document.getElementById('seconds').innerHTML = seconds
+        document.getElementById('seconds').innerHTML = showseconds
 
         seconds = seconds - 1;
         if (seconds == -1) {
@@ -67,6 +72,7 @@ function Start() {
                 }
             }
             seconds = 59
+
         }
     }, 1000);
 
@@ -90,12 +96,15 @@ function Start() {
 
     document.getElementById('pause').addEventListener('click', pausefunction)
 
-    function pausefunction(){
+    function pausefunction() {
+
+        worktime = workMinutes + 1
+        breaktime = breakMinutes + 1
+
         clearInterval(timerFunction)
 
         document.getElementById('start').style.display = ""
         document.getElementById('pause').style.display = 'none'
         document.getElementById('reset').style.display = ""
     }
-
 }
